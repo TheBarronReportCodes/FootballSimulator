@@ -1,1 +1,2 @@
-Football Simulator
+# Football Simulator
+Football simulator created using JavaScript
