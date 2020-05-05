@@ -17,11 +17,16 @@ paintBrush.stroke();
 
 for (var current = 0; current < 1000; current++) {
   paintBrush.beginPath();
-  randomX = Math.random() * 600;
-  randomY = Math.random() * 600;
+  randomX = Math.random() * window.innerWidth;
+  randomY = Math.random() * window.innerHeight;
   paintBrush.arc(randomX, randomY, 40, 0, Math.PI * 2, false);
   paintBrush.strokeStyle = "purple";
   paintBrush.stroke();
 }
 
-console.log(arc);
+function animate() {
+  requestAnimationFrame(animate);
+  console.log("working");
+}
+
+animate();
