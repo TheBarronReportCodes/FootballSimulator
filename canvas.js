@@ -11,22 +11,16 @@ paintBrush.fillRect(420, 100, 80, 80);
 paintBrush.fillStyle = "blue";
 paintBrush.fillRect(620, 300, 80, 80);
 
-paintBrush.arc(200, 200, 40, 0, Math.PI * 2, false);
-paintBrush.strokeStyle = "purple";
-paintBrush.stroke();
-
-for (var current = 0; current < 1000; current++) {
-  paintBrush.beginPath();
-  randomX = Math.random() * window.innerWidth;
-  randomY = Math.random() * window.innerHeight;
-  paintBrush.arc(randomX, randomY, 40, 0, Math.PI * 2, false);
-  paintBrush.strokeStyle = "purple";
-  paintBrush.stroke();
-}
-
+var xValue = 200;
 function animate() {
   requestAnimationFrame(animate);
-  console.log("working");
+
+  paintBrush.beginPath();
+  paintBrush.arc(xValue, 200, 40, 0, Math.PI * 2, false);
+  paintBrush.strokeStyle = "purple";
+  paintBrush.stroke();
+
+  xValue += 4;
 }
 
 animate();
