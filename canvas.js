@@ -12,6 +12,7 @@ paintBrush.fillStyle = "blue";
 paintBrush.fillRect(620, 300, 80, 80);
 
 var xValue = 200;
+velocity = 4;
 function animate() {
   requestAnimationFrame(animate);
 
@@ -20,7 +21,11 @@ function animate() {
   paintBrush.strokeStyle = "purple";
   paintBrush.stroke();
 
-  xValue += 4;
+  if (xValue > canvas.width) {
+    velocity = -velocity;
+  }
+
+  xValue += velocity;
 }
 
 animate();
