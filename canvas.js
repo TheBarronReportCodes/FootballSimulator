@@ -12,20 +12,28 @@ paintBrush.fillStyle = "blue";
 paintBrush.fillRect(620, 300, 80, 80);
 
 var xValue = 200;
-velocity = 4;
+var yValue = 200;
+var xVelocity = 4;
+var yVelocity = 4;
+var radius = 40;
 function animate() {
   requestAnimationFrame(animate);
 
   paintBrush.beginPath();
-  paintBrush.arc(xValue, 200, 40, 0, Math.PI * 2, false);
+  paintBrush.arc(xValue, yValue, radius, 0, Math.PI * 2, false);
   paintBrush.strokeStyle = "purple";
   paintBrush.stroke();
 
-  if (xValue > canvas.width) {
-    velocity = -velocity;
+  if (xValue + radius > canvas.width || xValue - radius < 0) {
+    xVelocity = -xVelocity;
   }
 
-  xValue += velocity;
+  if (yValue + radius > canvas.height || yValue - radius < 0) {
+    yVelocity = -yVelocity;
+  }
+
+  yValue += yVelocity;
+  xValue += xVelocity;
 }
 
 animate();
