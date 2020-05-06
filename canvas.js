@@ -11,29 +11,60 @@ paintBrush.fillRect(420, 100, 80, 80);
 paintBrush.fillStyle = "blue";
 paintBrush.fillRect(620, 300, 80, 80);
 
-var xValue = Math.random() * canvas.innerWidth;
-var yValue = Math.random() * canvas.innerHeight;
-var xVelocity = 6;
-var yVelocity = 3;
-var radius = 40;
+// var xValue = Math.random() * canvas.width;
+// var yValue = Math.random() * canvas.height;
+// var xVelocity = (Math.random() - 0.5) * 16;
+// var yVelocity = (Math.random() - 0.5) * 16;
+// var radius = 40;
+
+function Circle(xValue, yValue, xVelocity, yVelocity, radius) {
+  this.xValue = xValue;
+  this.yValue = yValue;
+  this.xVelocity = xVelocity;
+  this.yVelocity = yVelocity;
+  this.radius = radius;
+
+  this.draw = function () {
+    paintBrush.beginPath();
+    paintBrush.arc(
+      this.xValue,
+      this.yValue,
+      this.radius,
+      0,
+      Math.PI * 2,
+      false
+    );
+    paintBrush.strokeStyle = "purple";
+    paintBrush.stroke();
+  };
+
+  this.update = function () {
+    if (
+      this.xValue + this.radius > canvas.width ||
+      this.xValue - this.radius < 0
+    ) {
+      this.xVelocity = -this.xVelocity;
+    }
+
+    if (
+      this.yValue + this.radius > canvas.height ||
+      this.yValue - this.radius < 0
+    ) {
+      this.yVelocity = -this.yVelocity;
+    }
+
+    this.yValue += this.yVelocity;
+    this.xValue += this.xVelocity;
+
+    this.draw();
+  };
+}
+
+var circleObject = new Circle(200, 200, 3, 3, 30);
+
 function animate() {
   requestAnimationFrame(animate);
-
-  paintBrush.beginPath();
-  paintBrush.arc(xValue, yValue, radius, 0, Math.PI * 2, false);
-  paintBrush.strokeStyle = "purple";
-  paintBrush.stroke();
-
-  if (xValue + radius > canvas.width || xValue - radius < 0) {
-    xVelocity = -xVelocity;
-  }
-
-  if (yValue + radius > canvas.height || yValue - radius < 0) {
-    yVelocity = -yVelocity;
-  }
-
-  yValue += yVelocity;
-  xValue += xVelocity;
+  circleObject.update();
 }
 
 animate();
