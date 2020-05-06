@@ -11,10 +11,10 @@ paintBrush.fillRect(420, 100, 80, 80);
 paintBrush.fillStyle = "blue";
 paintBrush.fillRect(620, 300, 80, 80);
 
-var xValue = 200;
-var yValue = 200;
-var xVelocity = 4;
-var yVelocity = 4;
+var xValue = Math.random() * canvas.innerWidth;
+var yValue = Math.random() * canvas.innerHeight;
+var xVelocity = 6;
+var yVelocity = 3;
 var radius = 40;
 function animate() {
   requestAnimationFrame(animate);
